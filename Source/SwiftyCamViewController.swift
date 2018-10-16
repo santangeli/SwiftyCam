@@ -255,7 +255,8 @@ open class SwiftyCamViewController: UIViewController {
 
 	override open func viewDidLoad() {
 		super.viewDidLoad()
-        previewLayer = PreviewView(frame: view.frame, videoGravity: videoGravity)
+		let newFrame = CGRect(x: 0.0,y: 0.0 ,width: view.frame.width,height: view.frame.width)
+        previewLayer = PreviewView(frame: newFrame, videoGravity: videoGravity)
         previewLayer.center = view.center
         view.addSubview(previewLayer)
         view.sendSubview(toBack: previewLayer)
@@ -299,9 +300,11 @@ open class SwiftyCamViewController: UIViewController {
     private func updatePreviewLayer(layer: AVCaptureConnection, orientation: AVCaptureVideoOrientation) {
         
         layer.videoOrientation = orientation
-        
-        previewLayer.frame = self.view.bounds
-        
+		
+		let newFrame = CGRect(x: 0.0,y: 0.0 ,width: view.frame.width,height: view.frame.width)
+		
+        previewLayer.frame =  newFrame //self.view.bounds
+        previewLayer.center = view.center
     }
     
     override open func viewDidLayoutSubviews() {
